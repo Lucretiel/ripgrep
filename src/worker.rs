@@ -19,11 +19,13 @@ use search_stream::{InputBuffer, Searcher};
 
 use Result;
 
+#[derive(Debug)]
 pub enum Work {
     Stdin,
     DirEntry(DirEntry),
 }
 
+#[derive(Debug)]
 pub struct WorkerBuilder {
     grep: Grep,
     opts: Options,
@@ -54,24 +56,8 @@ struct Options {
 impl Default for Options {
     fn default() -> Options {
         Options {
-            mmap: false,
-            encoding: None,
-            after_context: 0,
-            before_context: 0,
-            byte_offset: false,
-            count: false,
-            count_matches: false,
-            files_with_matches: false,
-            files_without_matches: false,
             eol: b'\n',
-            invert_match: false,
-            line_number: false,
-            max_count: None,
-            no_messages: false,
-            quiet: false,
-            text: false,
-            search_zip_files: false,
-            preprocessor: None,
+            ..Default::default(),
         }
     }
 }
